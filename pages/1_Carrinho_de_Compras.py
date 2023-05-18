@@ -1,0 +1,37 @@
+import streamlit as st
+import functions as f
+import pandas as pd
+
+st.title("Carrinho de Compras")
+# Montar carrinho de compras
+lista_produtos = f.lista_de_nomes_produto()
+nomes = [i[0] for i in lista_produtos]
+option = st.multiselect('Selecione uma opção', nomes)
+if st.button('Adicionar ao carrinho'):
+    st.success(f'Foram adicionados {len(option)} produtos ao carrinho')
+    produtos = []
+    precos = []
+    categorias = []
+    ids = []
+    for i in option:
+        for j in lista_produtos:
+            if i == j[0]:
+                produtos.append(j)
+                precos.append(j[1])
+                categorias.append(j[2])
+                ids.append(j[3])
+    df = pd.DataFrame(produtos, columns=['Produto','Preço','Categoria','ID'])
+    df['ID'] = ids
+    df['Preço'] = precos
+    df['Categoria'] = categorias
+    # id as a string and index
+    df['ID'] = df['ID'].astype(str)
+    df.set_index('ID', inplace=True)
+    st.dataframe(df)
+    st.write(f'Total do carrinho: R$ {sum(precos)}')
+
+    # Gerar recomendação de produtos
+    if st.button('Gerar recomendação de produtos'):
+        st.success('Recomendação gerada com sucesso')
+        
+
