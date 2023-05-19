@@ -4,6 +4,7 @@ import pandas as pd
 
 st.title("Pesquisa de Produtos Disponiveis")
 
+# sidebar icon menu on top
 # Pesquisar produtos disponiveis
 search = st.text_input('Pesquisar')
 if st.button('Pesquisar'):
@@ -21,3 +22,6 @@ if st.button('Pesquisar'):
             st.divider()
             st.dataframe(df)
 
+# loading style.css
+with open('style.css') as ww:
+    st.markdown(f'<style>{ww.read()}</style>', unsafe_allow_html=True)

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+h1,h2,h3,h4,h5,h6,p,span{
+    font-family: Poppins,'Open Sans',sans-serif!important;
+}
+
+[data-testid="stSidebarNav"] {
+    background-image: url(https://img.lojadomecanico.com.br/IMAGENS/loja-do-mecanico.svg);
+    background-repeat: no-repeat;
+    background-position: 20px 40px;
+    background-size: 200px;
+}
+
+h1{color: #1a2132;}
+[data-testid="stSidebar"]{background-color: #fa4616;}
+[data-testid="stSidebar"] a span{color: white;}
+[data-testid="stSidebar"] svg{fill: white;}
+[data-testid="stSidebar"] div{border-bottom: 1px solid rgb(255 255 255 / 0%);}

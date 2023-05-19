@@ -5,6 +5,10 @@ import logging
 
 logging.basicConfig(filename='log_geral.log', level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
+#open css
+with open('style.css') as ww:
+    st.markdown(f'<style>{ww.read()}</style>', unsafe_allow_html=True)
+    
 st.title("Carrinho de Compras")
 # Montar carrinho de compras
 lista_produtos = f.lista_de_nomes_produto()
