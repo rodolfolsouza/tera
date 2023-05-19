@@ -30,6 +30,8 @@ if st.button('Adicionar ao carrinho'):
     df = pd.DataFrame(produtos, columns=['Produto','Preço','Categoria','ID'])
     df['ID'] = ids
     df['Preço'] = precos
+    # adicionar R$ to price
+    df['Preço'] = df['Preço'].apply(lambda x: f'R$ {x}')
     df['Categoria'] = categorias
     # id as a string and index
     df['ID'] = df['ID'].astype(str)
@@ -44,6 +46,8 @@ if st.button('Adicionar ao carrinho'):
     print(tuple(categorias))
     recomendacao = f.gerar_recomendacao_de_produtos(tuple(categorias))
     df = pd.DataFrame(recomendacao, columns=['Nome','Preço','Categoria','ID'])
+    # adicionar R$ to price
+    df['Preço'] = df['Preço'].apply(lambda x: f'R$ {x}')
     # id as a string and index
     df['ID'] = df['ID'].astype(str)
     df.set_index('ID', inplace=True)

@@ -18,6 +18,8 @@ if st.button('Pesquisar'):
             df = pd.DataFrame(result, columns=['ID','Nome','Preço','Categoria','Subcategoria'])
             # Id as a string and index
             df['ID'] = df['ID'].astype(str)
+            # R$ to price
+            df['Preço'] = df['Preço'].apply(lambda x: f'R$ {x}')
             df.set_index('ID', inplace=True)
             st.divider()
             st.dataframe(df)
