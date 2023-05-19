@@ -39,8 +39,11 @@ if st.button('Adicionar ao carrinho'):
     st.write('Baseado nos produtos que você adicionou ao carrinho, recomendamos os seguintes produtos:')
     print(tuple(categorias))
     recomendacao = f.gerar_recomendacao_de_produtos(tuple(categorias))
-    nomes_recomendacao = [i[0] for i in recomendacao]
-    st.write(nomes_recomendacao)
+    df = pd.DataFrame(recomendacao, columns=['Nome','Preço','Categoria','ID'])
+    # id as a string and index
+    df['ID'] = df['ID'].astype(str)
+    df.set_index('ID', inplace=True)
+    st.dataframe(df)
 
 
         
