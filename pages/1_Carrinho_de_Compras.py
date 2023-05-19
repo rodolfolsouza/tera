@@ -16,6 +16,8 @@ nomes = [i[0] for i in lista_produtos]
 option = st.multiselect('Selecione uma opção', nomes)
 if st.button('Adicionar ao carrinho'):
     st.success(f'Foram adicionados {len(option)} produtos ao carrinho')
+    # loading
+    
     produtos = []
     precos = []
     categorias = []
@@ -38,20 +40,22 @@ if st.button('Adicionar ao carrinho'):
     df.set_index('ID', inplace=True)
     st.dataframe(df)
     st.write(f'Total do carrinho: R$ {round(sum(precos),2)}')
-
-
+    logging.info(f'Foram adicionados {len(option)} produtos ao carrinho')
+    # categorias selecionadas no carrinho
+    logging.info(f'Categorias selecionadas: {categorias}')
     # Recomendação de produtos
     st.title("Recomendação de Produtos")
     st.write('Baseado nos produtos que você adicionou ao carrinho, recomendamos os seguintes produtos:')
     print(tuple(categorias))
-    recomendacao = f.gerar_recomendacao_de_produtos(tuple(categorias))
-    df = pd.DataFrame(recomendacao, columns=['Nome','Preço','Categoria','ID'])
-    # adicionar R$ to price
-    df['Preço'] = df['Preço'].apply(lambda x: f'R$ {x}')
-    # id as a string and index
-    df['ID'] = df['ID'].astype(str)
-    df.set_index('ID', inplace=True)
-    st.dataframe(df)
+    with st.spinner('Carregando...'):
+        recomendacao = f.gerar_recomendacao_de_produtos(tuple(categorias))
+        df = pd.DataFrame(recomendacao, columns=['Nome','Preço','Categoria','ID'])
+        # adicionar R$ to price
+        df['Preço'] = df['Preço'].apply(lambda x: f'R$ {x}')
+        # id as a string and index
+        df['ID'] = df['ID'].astype(str)
+        df.set_index('ID', inplace=True)
+        st.dataframe(df)
 
 
         
