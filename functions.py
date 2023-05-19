@@ -49,3 +49,15 @@ def lista_de_nomes_produto():
     finally:
         cursor.close()
         con.close()
+
+def gerar_recomendacao_de_produtos(categorias):
+    try:
+        con = connect_db()
+        cursor = con.cursor()
+        cursor.execute(f"SELECT con FROM MODCAT WHERE ant in {categorias}")
+        result = cursor.fetchall()
+        return result
+    except Error as e:
+        logging.error(f'Erro ao consultar o banco de dados: {e}')
+        return 'ERROR'
+

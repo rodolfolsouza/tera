@@ -1,6 +1,9 @@
 import streamlit as st
 import functions as f
 import pandas as pd
+import logging
+
+logging.basicConfig(filename='log_geral.log', level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
 st.title("Carrinho de Compras")
 # Montar carrinho de compras
@@ -30,8 +33,15 @@ if st.button('Adicionar ao carrinho'):
     st.dataframe(df)
     st.write(f'Total do carrinho: R$ {sum(precos)}')
 
-    # Gerar recomendação de produtos
-    if st.button('Gerar recomendação de produtos'):
-        st.success('Recomendação gerada com sucesso')
+
+    # Recomendação de produtos
+    st.title("Recomendação de Produtos")
+    st.write('Baseado nos produtos que você adicionou ao carrinho, recomendamos os seguintes produtos:')
+    print(tuple(categorias))
+    recomendacao = f.gerar_recomendacao_de_produtos(tuple(categorias))
+    nomes_recomendacao = [i[0] for i in recomendacao]
+    st.write(nomes_recomendacao)
+
+
         
 
