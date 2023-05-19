@@ -3,3 +3,4 @@ deta==1.1.0
 pandas==1.2.5
 python-dotenv==0.21.0
 mysql.connector==2.2.9
+loguru==0.5.3
