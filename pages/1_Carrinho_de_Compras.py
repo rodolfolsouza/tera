@@ -37,7 +37,7 @@ if st.button('Adicionar ao carrinho'):
     df['ID'] = df['ID'].astype(str)
     df.set_index('ID', inplace=True)
     st.dataframe(df)
-    st.write(f'Total do carrinho: R$ {sum(precos)}')
+    st.write(f'Total do carrinho: R$ {round(sum(precos),2)}')
 
 
     # Recomendação de produtos
