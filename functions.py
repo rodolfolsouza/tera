@@ -13,8 +13,6 @@ dbname = os.getenv('DBNAME')
 dbuser = os.getenv('DBUSER')
 dbpass = os.getenv('DBPASS')
 
-
-
 def connect_db():
     try:
         con = mysql.connector.connect(host=dbhost,database=dbname,user=dbuser,password=dbpass)
